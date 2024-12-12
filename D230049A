@@ -1,0 +1,62 @@
+class Person {
+    protected String name;
+    protected int age;
+    protected String address;
+
+    public Person(String name, int age, String address) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
+
+    public String toString() {
+        return "Name: " + name + ", Age: " + age + ", Address: " + address;
+    }
+
+    public void displayInfo() {
+        System.out.println(toString());
+    }
+}
+
+class Student extends Person {
+    private int studentID;
+    private int creditHours;
+
+    public Student(String name, int age, String address, int studentID) {
+        super(name, age, address);
+        this.studentID = studentID;
+        this.creditHours = 0;
+    }
+
+    public void registerCourse(int hours) {
+        if (creditHours + hours <= 18) {
+            creditHours += hours;
+            System.out.println("Course registered successfully.");
+        } else {
+            System.out.println("Cannot register more than 18 credit hours.");
+        }
+    }
+
+    public double calculateFees() {
+        return creditHours * 250;
+    }
+}
+
+class Lecturer extends Person {
+    private String department;
+    private boolean isSTEM;
+
+    public Lecturer(String name, int age, String address, String department, boolean isSTEM) {
+        super(name, age, address);
+        this.department = department;
+        this.isSTEM = isSTEM;
+    }
+
+    public double calculateSalary(int teachingHours) {
+        if (isSTEM) {
+            return teachingHours * 250;
+        } else {
+            return teachingHours * 100;
+        }
+    }
+}
